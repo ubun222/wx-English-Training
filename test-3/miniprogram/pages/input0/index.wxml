@@ -1,0 +1,35 @@
+<view class="input0" style="width:100%;height:100%;position: absolute;justify-content: center;">
+    <view class="page-section" style="width:100%;">
+        <view class="btn-area" plain="true" id="buttonContainer" style="display: flex;justify-content: space-between;">
+<text style="white-space: nowrap; overflow: hidden; color : black; display: flex;justify-content: center; align-items: center;height: 47rpx;width: 45%; position:relative; " type="default"  bindtap="lastText"  >{{showlast}}</text>
+
+<picker 
+style="height: auto;"
+bindchange="updatetheText" bindtap="theshift2"  value="{{index-1}}" range="{{question0}}" >{{index}}/{{max}}</picker>
+<text style="white-space: nowrap; overflow: hidden; color : black; display: flex;justify-content: center; align-items: center;height: 47rpx;width: 45%; position:relative; " type="default"  bindtap="{{shownext != '' ? 'updateText' : ''}}"  >{{shownext}}</text>
+
+</view>
+<view style="width: 100%;height: 1px;background-color: {{thelinecolor}};">
+</view>
+    <picker class="picker" bindchange="updatetheText" value="{{index-1}}" range="{{question0}}" bindtap="theshift2"  style="font-size: 29px;text-align:center">{{showquestion}}</picker>
+      <view class="nothing" style="width:100%;position: flex;justify-content: center;">
+
+        <textarea show-confirm-bar="{{false}}" bindtap="theshift" auto-focus="true" confirm-hold="false" focus="{{thefocus2}}" model value="{{myanswer}}" id="thearea" style=" text-align: center;font-size: 33px;{{ifright == 1 ? 'color : black' :  'color : rgb(83, 80, 80)'}};  min-width: 100%; pointer-events: auto;"  auto-height  placeholder="{{enshade}}" placeholder-style="font-size: 33px ;"></textarea>
+        <textarea show-confirm-bar="{{false}}" focus="{{thefocus}}" hold-keyboard="true"  model value="{{myanswer}}" id="thearea"  confirm-hold="false" confirm-type="return"  bindconfirm="areaconfirm" 	 auto-focus="false" style="display: 'none';height: 0.02px;" bindinput="handleInput" placeholder="{{enshade}}" placeholder-style="font-size: 33px ;" ></textarea>
+</view>
+  </view>
+<view style="width: 100%;height: 1px;background-color: {{thelinecolor}};">
+</view>
+<view style="width: 750rpx; height: 0rpx; display: block; box-sizing: border-box; text-align: center">
+<rich-text user-select="true" nodes="{{showtext}}" style="font-size: 19.4px; position: relative; width: 100%; height: 108rpx; box-sizing: border-box; left: 0rpx; top: 0rpx">
+</rich-text>
+</view>
+  <view style="height: 47rpx;width:100%;position: fixed;bottom:0;display: flex;align-items: normal;justify-content: normal;" class="btn-area" plain="true" id="buttonContainer">
+    <button style="display: flex;justify-content: center; align-items: center;bottom: {{keyboardHeight1}};height: 47rpx; {{ifright != 1 ? 'color : grey' :  'color : black' && ysv == 'y' ? 'color : green' :  'color : black' }};width: 30%; position:relative; " type="default" disabled="{{ifright != 1 && enter != 1 }}" type="{{ifright == 1 ? 'type':'default'  || enter == 1 ?  'type':'default'}}" bindtap="showdefinition"  >释义</button>
+
+  <button style="{{keyboardHeight1 == 0 ? 'display : none' :  'display : inline'}};height: 47rpx;width: 40%; display: flex; justify-content: center; align-items: center;position:relative ;bottom: {{keyboardHeight1}};{{ifright != 1 ? 'color : black' : 'color : grey' && hint == '继续' ? 'color : black' : 'color : grey'  }}"  disabled="{{ifright == 5}}" bindtap="doubleTap" >{{hint}}</button>
+
+  <button style="justify-content: center; align-items: center;display: flex;bottom: {{keyboardHeight1}};height: 47rpx; {{ifright != 1 ? 'color : grey' :  'color : black' && ysv == 'v' ? 'color : green' :  'color : black' }};width: 30%; position: relative; " type="default" disabled="{{ifright != 1 && enter != 1 }}" type="{{ifright == 1 ? 'type':'default' || enter == 1 ?  'type':'default' }}"  bindtap="showexample"  >例句</button>
+</view>
+
+</view>

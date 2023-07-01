@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="container" style=" width: 100%;height: 100%;position: fixed; left: 0rpx; top: 0rpx">
+
+    <view class="section" style="height:100%;width:100%;position: relative;flex-direction: column; left: 0rpx; top: 10px">
+  <view class="userinfo" style="height:300rpx;width:100%;position: relative; left: 0rpx; top: 0px">
+    <image bindtap="bindViewTap"  class="userinfo-avatar" src="./panda.jpeg" mode="cover" style="width: 100px ; height: 100px ;overflow: hidden;     margin: 20rpx;   border-radius: 50%;"  ></image>
+
+      <text class="userinfo-nickname">点头像以继续</text>
+
+  </view>
+<view style="display: flex; width: 100%; height: 230rpx;flex-direction: column; box-sizing: border-box; left: 0rpx;bottom: 0rpx; top: 0rpx">
+
+  <view class="switchs" style="display: flex; align-items: center; width: 100%; height: 70rpx; box-sizing: border-box; position: relative; left: 0rpx; top: 10rpx">
+
+
+<switch class="switch-1"  type="checkbox" checked="{{switch5Checke}}" bindchange="switch5Change" style="width: 30%;left :10% ;height: 40rpx; display: block; box-sizing: border-box; position: relative; top: 0rpx">通关模式</switch>
+
+<switch class="switch-1"  type="checkbox" checked="{{Audio}}" bindchange="switch0Change" style="width: 30%; height: 40rpx; display: block; left:10%;box-sizing: border-box; position: relative; top: 0rpx">开启语音</switch>
+
+
+</view>
+
+
+  <view class="switchs" style="display: flex; align-items: center; width: 100%; height: 70rpx; box-sizing: border-box; position: relative; left: 0rpx; top: 10rpx">
+
+
+    <switch class="switch-1" type="checkbox" checked="{{switch1Checke}}" bindchange="switch1Change" style="width: 30%;left :10% ;height: 40rpx; display: block; box-sizing: border-box; position: relative; top: 0rpx">中译英</switch>
+
+                <switch class="switch-1"  type="checkbox" checked="{{switch2Checke}}" bindchange="switch2Change" style="width: 30%; height: 40rpx; display: block; left:10%;box-sizing: border-box; position: relative; top: 0rpx">英译中</switch>
+
+                <switch class="switch-1"  type="checkbox" checked="{{switch6Checke}}" bindchange="switch6Change" style="width: auto; height: 40rpx; display: block; left: 10% ;box-sizing: border-box; position: relative;  top: 0rpx;">混合</switch>
+
+
+            </view>
+
+            <view style="display: flex; align-items: center;  width: 100%; height: 70rpx; box-sizing: border-box; position: relative;left: 0rpx; top: 10rpx" class="body-view">
+
+              <switch class="switch-2"  type="checkbox" checked="{{switch3Checke}}" bindchange="switch3Change" style="width: 30%;left :10% ;height: 40rpx; display: block; box-sizing: border-box; position: relative; top: 0rpx">顺序</switch>
+
+                <switch class="switch-2"  type="checkbox" checked="{{switch4Checke}}" bindchange="switch4Change" style="width: 30%; height: 40rpx; display: block; box-sizing: border-box; position: relative; left: 10%; top: 0rpx">倒序</switch>
+
+
+                <switch class="switch-1"  type="checkbox" checked="{{switch7Checke}}" bindchange="switch7Change" style="width: auto; height: 40rpx; display: block; box-sizing: border-box; position: relative; left: 10%; top: 0rpx; ">乱序</switch>
+                
+
+            </view>
+</view>
+<view style="width: 100%;margin-top:10rpx;height: 1px;background-color:#E4E4E4;"></view>
+<view class="sw"  style="display: flex;flex-direction: column;align-items: center; height:229rpx;width:100%;position: relative;">
+  <text style="font-size: 34rpx; justify-content: center;display: flex; align-items: center; width: 100%; height: 70rpx; box-sizing: border-box; position: relative; top: 5rpx" class="section__title">{{Switchhint}}</text>
+  <switch  style="display: flex; align-items: center; width: auto; height: 70rpx; box-sizing: border-box; position: relative; top: 0rpx"  checked="{{Switch1Checked}}" bindchange="Switch1Change"></switch>
+  <button bindtap="bindViewTap4"   disabled="{{valid==true || getgitees == true }}" style="line-height: 28rpx; position: relative; left: 0rpx; top: 50rpx; width: 215rpx; height: 60rpx; display: block; box-sizing: border-box; font-size: 33rpx ;{{getlocals == false  ? 'color : balck' :  'color : green'}}">自定义</button>
+  </view>
+
+
+
+</view>
+</view>
