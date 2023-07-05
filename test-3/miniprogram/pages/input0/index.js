@@ -247,11 +247,12 @@ console.log(eachword);
                     }
                 }
                 else{
-                    if ((/[a-zA-Z]/.test(value))){
+                    if ((/[a-zA-Z]/.test(inputValue))){
 
-                        value=value.replace( /[a-zA-Z]+/g, '');
+                        inputValue=inputValue.replace( /[a-zA-Z]+/g, '');
                 
                     }
+                    value=inputValue
                     ifenter=false;
                     //this.lastCursor = this.theCursor;
                     this.setData({
