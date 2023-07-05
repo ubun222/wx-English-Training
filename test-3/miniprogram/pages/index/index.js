@@ -53,7 +53,7 @@ if(getlocals==true){
 
         valid=true;
         //app.globalData.alltxt=''
-            console.log(tempFilePaths[0]["path"])
+            //console.log(tempFilePaths[0]["path"])
                   const fs = wx.getFileSystemManager();
                   for (var t=0 ; t<tempFilePaths.length ; t++){
 

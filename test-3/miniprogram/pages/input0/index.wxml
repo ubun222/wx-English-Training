@@ -14,8 +14,8 @@ bindchange="updatetheText" bindtap="theshift2"  value="{{index-1}}" range="{{que
     <picker class="picker" bindchange="updatetheText" value="{{index-1}}" range="{{question0}}" bindtap="theshift2"  style="font-size: 29px;text-align:center">{{showquestion}}</picker>
       <view class="nothing" style="width:100%;position: flex;justify-content: center;">
 
-        <textarea show-confirm-bar="{{false}}" bindtap="theshift" auto-focus="true" confirm-hold="false" focus="{{thefocus2}}" model value="{{myanswer}}" id="thearea" style=" text-align: center;font-size: 33px;{{ifright == 1 ? 'color : black' :  'color : rgb(83, 80, 80)'}};  min-width: 100%; pointer-events: auto;"  auto-height  placeholder="{{enshade}}" placeholder-style="font-size: 33px ;"></textarea>
-        <textarea show-confirm-bar="{{false}}" focus="{{thefocus}}" hold-keyboard="true"  model value="{{myanswer}}" id="thearea"  confirm-hold="false" confirm-type="return"  bindconfirm="areaconfirm" 	 auto-focus="false" style="display: 'none';height: 0.02px;" bindinput="handleInput" placeholder="{{enshade}}" placeholder-style="font-size: 33px ;" ></textarea>
+        <textarea show-confirm-bar="{{false}}" bindtap="theshift" auto-focus="false" confirm-hold="false" focus="{{thefocus2}}" model value="{{myanswer}}" id="thearea" style=" text-align: center;font-size: 33px;{{ifright == 1 ? 'color : black' :  'color : rgb(83, 80, 80)'}};  min-width: 100%; pointer-events: auto;"  auto-height  placeholder="{{enshade}}" placeholder-style="font-size: 33px ;"></textarea>
+        <textarea show-confirm-bar="{{false}}" focus="{{thefocus}}" hold-keyboard="true"  model value="{{myanswer}}" id="thearea"  confirm-hold="false" confirm-type="done"  bindconfirm="areaconfirm" 	 auto-focus="false" style="display: 'none';height: 0.02px;" bindinput="handleInput" placeholder="{{enshade}}" placeholder-style="font-size: 33px ;" ></textarea>
 </view>
   </view>
 <view style="width: 100%;height: 1px;background-color: {{thelinecolor}};">

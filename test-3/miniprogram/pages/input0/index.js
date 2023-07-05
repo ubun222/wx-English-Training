@@ -98,7 +98,7 @@ Page({
            // tmp2=1
             }
             else{
-                
+              //inputValue="\n"
                 tmp=0
             }
             inputValue=inputValue
@@ -124,7 +124,7 @@ Page({
                    // this.lastCursor = 0;
                     return value //不能去掉
                 }
-                else if(ifright!=1 && inputValue=='\n'){ 
+                else if(ifright!=1 && inputValue=='\n' ){ 
                     //let value=inputValue.slice(0,-1)
                     //栏空时，回车显示答案
                     //console.log(answer0[index])  
@@ -247,6 +247,11 @@ console.log(eachword);
                     }
                 }
                 else{
+                    if ((/[a-zA-Z]/.test(value))){
+
+                        value=value.replace( /[a-zA-Z]+/g, '');
+                
+                    }
                     ifenter=false;
                     //this.lastCursor = this.theCursor;
                     this.setData({
@@ -498,6 +503,10 @@ if(line[n].indexOf("|")!=true && line[n]!=''){
 
     getfromio(){
         this.lastCursor = 0
+        this.setData({
+            thefocus2: false,
+            thefocus: true,
+        })
         //console.log(app.globalData.switch2Checked);
         if((app.globalData.modechanged == true || app.globalData.question==null)){
         index=0;
@@ -931,53 +940,55 @@ updatetheText(e){
         this.setData({
             enshade:null,
         })
-        index=parseInt(e.detail.value)
-        console.log(app.globalData.question)
+        index=parseInt(index0[e.detail.value])
+        console.log(index)
 
-       app.globalData.question = question0[index];
+       app.globalData.question = Question0[index];
        if(app.globalData.switch1Checked==false && app.globalData.switch2Checked==true){
-       this.splitzh(answer0[index]);
+       this.splitzh(Answer0[index]);
        enzh=true;
-       zh=answer0[index];
-       en=question0[index];
+       zh=Answer0[index];
+       en=Question0[index];
        }
        else if(app.globalData.switch1Checked==true && app.globalData.switch2Checked==false){
-       this.spliten(answer0[index]);
+       this.spliten(Answer0[index]);
        zhen=true;
-       zh=question0[index];
-       en=answer0[index];
+       zh=Question0[index];
+       en=Answer0[index];
        }
        else if (app.globalData.switch6Checked==true){
            if(index%2==0){
-               this.splitzh(answer0[index]);
+               this.splitzh(Answer0[index]);
                enzh=true
-               zh=answer0[index];
-               en=question0[index];
+               zh=Answer0[index];
+               en=Question0[index];
            }
            else if(index%2==1){
-               this.spliten(answer0[index]);
+               this.spliten(Answer0[index]);
                zhen=true
-               zh=question0[index];
-               en=answer0[index];
+               zh=Question0[index];
+               en=Answer0[index];
            }
        }
        if(them<=0){
         then=then+1
-       orders.push(question0[index])
-       orders2.push(answer0[index])
+       orders.push(Question0[index])
+       orders2.push(Answer0[index])
        ifrights.push(true)
        //constindexs.push(Index0.indexOf(index0[index]))
-       indexs.push(index0[index])
+       indexs.push(index)
        }
        else{
         //then=then+1
            indexs[then-1]=index
-           orders[then-1]=question0[index]
-           orders2[then-1]=answer0[index]
+           orders[then-1]=Question0[index]
+           orders2[then-1]=Answer0[index]
        }
        //var value=this.data.thearea;
        //getApp().globalData.question
        //console.log(value)
+       innerAudioContext.src = `https://dict.youdao.com/dictvoice?audio=${en}&type=2`
+       innerAudioContext.play()
        this.setData({
 
            showtext: '',
@@ -1296,7 +1307,7 @@ app.globalData.question = Question0[Index];
     onLoad: function(){
         //console.log('app.globalData.switch2Checked',app.globalData.switch2Checked);
         wx.hideLoading()
-        //this.theshift()
+        
         if((app.globalData.modechanged == true || app.globalData.question==null)){
         this.theshift();
         then=0
@@ -1309,6 +1320,7 @@ app.globalData.question = Question0[Index];
         theanswer=null
         }
         else{
+            this.theshift();
             this.setData({
 
                 question0: question0,
@@ -1337,7 +1349,10 @@ app.globalData.question = Question0[Index];
 
     onShow: function() {
         // 在切换回前台时执行相应的操作
-        this.theshift(); 
+        this.setData({
+            thefocus2: false,
+            thefocus: true,
+        })
       },
 
   data: {
@@ -1365,11 +1380,12 @@ if(enzh==true){
         if(this.data.ifright==1) {
             let value = '';
             this.setData({
-                myanswer2 :value,
-                myanswer :value,
-                ifright: 0,
-                thelinecolor: "#ccc",
-                })
+              myanswer2 :value,
+              myanswer :value,
+              ifright: 0,
+              inputValue : "",
+              thelinecolor: "#ccc",
+              })
                 ifright = 0
             this.updateText();
             this.lastCursor = 0;
@@ -1380,16 +1396,19 @@ if(enzh==true){
             //栏空时，回车显示答案
             //console.log(answer0[index])   
             ifenter=true 
-            let value=theanswer     
-    this.setData({
-        myanswer : '', 
-        myanswer2:  '',
-        thefocus: false,
-        thefocus2: false,
-        })
+            //theanswer      
+            this.setData({
+              myanswer : theanswer,
+              myanswer2:  theanswer,
+              ifright: 1,
+              ifrightd : 1,
+              thelinecolor: "black",
+              hint: '继续'
+              })
+              zhs2=[]
         //ifright=1;
             //value=answer0[index];
-            return null;
+            return ;
             }
             else{
                 this.setData({
@@ -1405,11 +1424,128 @@ if(enzh==true){
                 for (var n=0;n<zhs.length;++n){
                     zhs2[n]=zhs[n];
                 }
+                var eachword=[];
+                      inputValue=e.detail.value.replace(/\n/,'');
+                      //zhs=zhs2
+    if (/…/.test(inputValue) ){
+        //console.log(',') 
+        inputValue=e.detail.value.replace(/…/,'...')
+       }    
 
-                this.lastCursor = 0;
-                return 
-            }
+    if (inputValue.indexOf("，")){
+    var eachword = inputValue.split("，");
+    }
+    else{
+        var eachword=[];
+    eachword.push(inputValue);
+    }                   
+                var zhslength=zhs.length
+                var count=0;
+                ifright=0;
+                inputValue=e.detail.value.replace(/\n/,'');
+                //zhs=zhs2
+if (/…/.test(inputValue) ){
+  //console.log(',') 
+  inputValue=e.detail.value.replace(/…/,'...')
+ }    
+let value=inputValue
+if (inputValue.indexOf("，")){
+var eachword = inputValue.split("，");
 }
+else{
+  var eachword=[];
+eachword.push(inputValue);
+}   
+var zhslength=zhs.length
+var count=0;
+ifright=0;
+this.setData({
+ifright :0,
+thelinecolor: "#ccc",
+})
+console.log(eachword);
+
+  for (var n = 0; n < eachword.length; n++) {
+      //console.log(zhslength);
+        for ( var i = 0; i < zhslength; i++) {
+         //console.log("++");
+        if ( eachword[n]===(zhs[i]) ){
+          console.log("++");
+         console.log(eachword[n]);
+         //zhs2[i]=''; 
+         count=count+1;
+      }
+
+
+      
+      }
+  }
+    console.log('count:',count);
+      if (count==zhslength){
+          //let value=inputValue
+          wx.vibrateShort()
+          console.log("right");
+          this.setData({
+              ifright: 1,
+              thelinecolor: "black",
+              hint: '继续',
+              myanswer: value,
+              myanswer2: value,
+          })
+          return value; 
+          //ifright=1;
+          //this.lastCursor = this.theCursor;
+       }
+      else if(count>0 && ifright==2){
+          wx.vibrateShort({
+              type:"light"
+          }
+          )
+      let value=inputValue;
+      inputValue=value
+      //this.lastCursor = this.theCursor;
+      console.log(value)
+
+          this.setData({
+              myanswer: value,
+              myanswer2: value,
+          })
+      return value
+      }
+      else{
+          
+          this.setData({
+              ifright: 0,
+              thelinecolor: "#ccc",
+              hint: '提示',
+          })
+      }
+  
+  this.setData({
+      enter : 0
+      })
+
+//  scanf = e.detail.value
+
+                  this.setData({
+                      myanswer : '',
+                      myanswer2 : '',
+                      lastCursor : 0,
+                      ifright: 0,
+                      ifrightd: 0,
+                      hint: '提示',
+                  })
+                  //this.data.myanswer='',
+                  //ifright=0;
+                  for (var n=0;n<zhs.length;++n){
+                      zhs2[n]=zhs[n];
+                  }
+  
+                  this.lastCursor = 0;
+                  return 
+              }
+
+            }
 else if(zhen==true){
     this.setData({
         enter : 1
@@ -1479,7 +1615,6 @@ else if(zhen==true){
 //console.log('enzh',enzh)
 //console.log('zhen',zhen)
 if(enzh==true){
-
     if (/…/.test(inputValue) ){
         //console.log(',') 
         inputValue=e.detail.value.replace(/…/,'...')
