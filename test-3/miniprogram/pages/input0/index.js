@@ -71,6 +71,14 @@ Page({
         })
     },
 
+    theshift2: function (e) {
+      wx.vibrateShort()
+      this.setData({
+          thefocus2: false,
+          thefocus: false,
+      })
+  },
+
     handleInput: function (e) {
 
           //delay(100)
