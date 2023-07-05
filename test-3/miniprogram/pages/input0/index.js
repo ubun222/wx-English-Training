@@ -71,27 +71,13 @@ Page({
         })
     },
 
-    theshift2 () {
-        wx.vibrateShort()
-
-        this.setData({
-            thefocus2: false,
-            thefocus: false,
-        })
-        this.setData({
-            thefocus2: false,
-            thefocus: false,
-        })
-        this.setData({
-            thefocus2: false,
-            thefocus: false,
-        })
-    },
-
     handleInput: function (e) {
+
+          //delay(100)
+
          var value = e.detail.value;
          //console.log(value); 
-         
+         //this.delay(100000)
         if(tmp!=1){
            inputValue=value //不能加var
           //  console.log(inputValue);
@@ -261,6 +247,7 @@ console.log(eachword);
                         })
                         //inputValue=value
                         this.theCursor = e.detail.cursor;
+                        //setTimeout(this.bindKeyInput, 400)
                         this.bindKeyInput(e);
                         this.lastCursor = this.theCursor;
                         //return inputValue;
@@ -330,6 +317,7 @@ console.log(eachword);
                     //this.lastCursor = this.theCursor;
                     this.theCursor = e.detail.cursor;
                     //inputValue=value
+                    //setTimeout(this.bindKeyInput, 400)
                     this.bindKeyInput(e)
                     this.lastCursor = this.theCursor;
                     return value;
@@ -1370,6 +1358,7 @@ app.globalData.question = Question0[Index];
     })
   },
   areaconfirm: function(e){
+      //this.theshift();
       inputValue=e.detail.value
 if(enzh==true){
     this.setData({
@@ -1412,6 +1401,7 @@ if(enzh==true){
             return ;
             }
             else{
+                ifenter=false;
                 this.setData({
                     myanswer : '',
                     myanswer2 : '',
@@ -1576,10 +1566,12 @@ else if(zhen==true){
                 myanswer: theanswer,
                 hint: '继续'
                 })
+            ifenter=true;  
             value=theanswer;
             ifright=1;
             }
             else{
+                ifenter=false;
                 value='';
                 this.setData({
                     myanswer : '',
@@ -1608,10 +1600,8 @@ else if(zhen==true){
 //      inputValue: e.detail.value,
 //      tmp: e.detail.value
     })
-
    // console.log('last',this.lastCursor);
    // console.log('now',this.theCursor);
-
     inputValue=inputValue
 //console.log('enzh',enzh)
 //console.log('zhen',zhen)
