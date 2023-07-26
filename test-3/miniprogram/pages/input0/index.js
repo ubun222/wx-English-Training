@@ -77,6 +77,14 @@ Page({
           thefocus2: false,
           thefocus: false,
       })
+      this.setData({
+        thefocus2: false,
+        thefocus: false,
+    })
+    this.setData({
+      thefocus2: false,
+      thefocus: false,
+  })
   },
 
     handleInput: function (e) {
@@ -677,7 +685,8 @@ them=them+1
         //}
         console.log("index:",index)
 
-        if(ifrights[then-1] == true){
+        if(ifrights[then-1] == true){ //当时没做对
+            var theindex=index0.indexOf(index)
         console.log("扩大范围")
 
         if(app.globalData.audio==true){
@@ -741,9 +750,12 @@ them=them+1
                       //  console.log("en:",en)
                     }
                 }
+                this.setData({
+                    index : theindex+1
+                    })
         }
 
-else{
+else{  //当时做对了
         if(app.globalData.switch5Checked==true  ){
             console.log("回退+1")     
           if(index0.indexOf(index)==-1 && ifrights[then-1]==false ){
@@ -829,6 +841,7 @@ else{
 
             //Index0[index]=index
             console.log(index0)
+            var theindex=index0.indexOf(index)
             //console.log(Index0)
             //question0[index]=orders[then-1]
 
@@ -842,7 +855,7 @@ else{
           //ifrights.pop()
           //orders.pop()
           //orders2.pop()
-          ifrights[then-1] == true
+          ifrights[then-1] = true
           }
           else if(ifrights[then-1] == true){
            //ifrights.pop()
@@ -916,20 +929,23 @@ else{
                 }
             }
 
+//index=theindex
+this.setData({
+index : theindex+1
+})
+
     }
-
-
 }
     },
 
 
 
 updatetheText(e){
-    //var theindex;
+
     //this.theshift2()
     ifenter=false
     console.log(e.detail.value)
-    //theindex=e.detail.value
+
     if( e.detail.value != index  ){
         zhen=false;
         enzh=false;
@@ -1039,7 +1055,7 @@ updatetheText(e){
            // if(indexs[then]){
           //  indexs[then-1]
     index=indexs[then-1]
-
+    var theindex=index0.indexOf(index)
     them=them-1
     if(them<=1){
       keepIndex=true
@@ -1120,7 +1136,11 @@ if(app.globalData.audio==true){
                         en=Answer0[index];
                     }
                 }
-
+                index=theindex
+this.setData({
+index : index+1
+})
+//index=index0.indexOf(index)
         }
         else{
         them=0
